@@ -1,15 +1,20 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import NameForm
+from .forms import NameForm, DateForm
+from constants import yesterday, delta, min_day_value, max_day_value, tommorow
+
 
 def index(request):
     # View code here...
-    return render(request, "index/main.html")
 
+    context = {
+        "today": yesterday.strftime("%Y-%m-%d"),
+        "min_day_value": min_day_value,
+        "max_day_value": max_day_value,
+        "tommorow": tommorow,
+    }
+    return render(request, "index/main.html", context)
 
-def route(request):
-    f = request.POST.get("first_text", "абвгд")
-    return HttpResponse(f"<h2>Name: {f}")
 
 def get_name(request):
     # if this is a POST request we need to process the form data
@@ -28,3 +33,8 @@ def get_name(request):
         form = NameForm()
 
     return render(request, "index/name.html", {"form": form})
+
+
+def datef(request):
+    form = DateForm(request.POST)
+    return render(request, "index/test.html", {"form": form})
