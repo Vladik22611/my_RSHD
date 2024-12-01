@@ -40,20 +40,20 @@
                     <input type="submit" value="Submit">
                 </form> -->
                 <form method="post" action="{% url 'route' %}">
-                <div class="col-lg-3 col-md-4">
+                <div class="col-lg-12 col-md-4">
                     <div class="single_input">
                             {% csrf_token %}
                         <input name="departure" type="text" placeholder="Откуда" />
                         
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4">
+                <div class="col-lg-12 col-md-4">
                     <div class="single_input">
                             {% csrf_token %}
                         <input name="arrival" type="text" placeholder="Куда" />
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4">
+                <div class="col-lg-12 col-md-4">
                     <div class="single_input">
                         
                     <!--Дата отправления:-->
@@ -61,7 +61,7 @@
                         
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4">
+                <div class="col-lg-12 col-md-4">
                     <div class="single_input">
                 
                     <!--Дата прибытия: -->
@@ -69,6 +69,7 @@
                 
                     </div>
                 </div>
+                <p text-align: right;> </p>
                     <!--<div class="col-lg-3 col-md-4">
                     <div class="single_input">
                         <select class="wide" >
@@ -108,288 +109,61 @@
                         <a href="{% url 'route' %}" class="boxed-btn3">Отследить маршрут</a>
                     </div>
                 </div>  -->
-                
+                <h1 text-align: right;> </h1>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="popular_search d-flex align-items-center">
-                        <span>Popular Search:</span>
+                        {% if is_superuser %}
+                        <span>Привелегии администратора:</span>
                         <ul>
-                            <li><a href="#">Design & Creative</a></li>
-                            <li><a href="#">Marketing</a></li>
-                            <li><a href="#">Administration</a></li>
-                            <li><a href="#">Teaching & Education</a></li>
-                            <li><a href="#">Engineering</a></li>
-                            <li><a href="#">Software & Web</a></li>
-                            <li><a href="#">Telemarketing</a></li>
+                            <li><a href ="{% url 'add_route' %}">Добавить рейс</a></li>
+                            <li><a href ="{% url 'del_route' %}">Удалить рейс</a></li>
+                            <li><a href ="{% url 'change_route' %}">Изменить рейс</a></li>
+                            <li><a href ="{% url 'show_table' 'races' %}">Таблица рейсов</a></li>
                         </ul>
+                        <span> </span>
+                        <ul>
+                            <li><a href ="{% url 'add_train' %}">Добавить поезд</a></li>
+                            <li><a href ="{% url 'del_train' %}">Удалить поезд</a></li>
+                            <li><a href ="{% url 'change_train' %}">Изменить поезд</a></li>
+                            <li><a href ="{% url 'show_table' 'trains' %}">Таблица поездов</a></li>
+                        </ul>
+                        <span> </span>
+                        <ul>
+                            <li><a href ="{% url 'add_model' %}">Добавить модель поезда</a></li>
+                            <li><a href ="{% url 'del_model' %}">Удалить модель поезда</a></li>
+                            <li><a href ="{% url 'change_model' %}">Изменить модель поезда</a></li>
+                            <li><a href ="{% url 'show_table' 'model_train' %}">Таблица моделей поездов</a></li>
+                            
+                        </ul>
+                        <span> </span>
+                        <ul>
+                            <li><a href ="{% url 'add_it' %}">Добавить маршрут</a></li>
+                            <li><a href ="{% url 'del_it' %}">Удалить маршрут</a></li>
+                            <li><a href ="{% url 'change_it' %}">Изменить маршрут</a></li>
+                            <li><a href ="{% url 'show_table' 'routes' %}">Таблица маршрутов</a></li>
+                        </ul>
+                        <span> </span>
+                        <ul>
+                            <li><a href ="{% url 'add_station' %}">Добавить станцию</a></li>
+                            <li><a href ="{% url 'del_station' %}">Удалить станцию</a></li>
+                            <li><a href ="{% url 'change_station' %}">Изменить станцию</a></li>
+                            <li><a href ="{% url 'show_table' 'railway_stations' %}">Таблица станций</a></li>
+                        </ul>
+                        {% endif %}
+                        
                     </div>
+                    
                 </div>
+                
             </div>
+            
         </div>
+        
     </div>
     <!--/ catagory_area -->
 
-    <!-- popular_catagory_area_start  -->
-    <div class="popular_catagory_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section_title mb-40">
-                        <h3>Popolar Categories</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-xl-3 col-md-6">
-                    <div class="single_catagory">
-                        <a href="jobs.html"><h4>Design & Creative</h4></a>
-                        <p> <span>50</span> Available position</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xl-3 col-md-6">
-                    <div class="single_catagory">
-                        <a href="jobs.html"><h4>Marketing</h4></a>
-                        <p> <span>50</span> Available position</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xl-3 col-md-6">
-                    <div class="single_catagory">
-                        <a href="jobs.html"><h4>Telemarketing</h4></a>
-                        <p> <span>50</span> Available position</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xl-3 col-md-6">
-                    <div class="single_catagory">
-                        <a href="jobs.html"><h4>Software & Web</h4></a>
-                        <p> <span>50</span> Available position</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xl-3 col-md-6">
-                    <div class="single_catagory">
-                        <a href="jobs.html"><h4>Administration</h4></a>
-                        <p> <span>50</span> Available position</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xl-3 col-md-6">
-                    <div class="single_catagory">
-                        <a href="jobs.html"><h4>Teaching & Education</h4></a>
-                        <p> <span>50</span> Available position</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xl-3 col-md-6">
-                    <div class="single_catagory">
-                        <a href="jobs.html"><h4>Engineering</h4></a>
-                        <p> <span>50</span> Available position</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xl-3 col-md-6">
-                    <div class="single_catagory">
-                        <a href="jobs.html"><h4>Garments / Textile</h4></a>
-                        <p> <span>50</span> Available position</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- popular_catagory_area_end  -->
-
-    <!-- job_listing_area_start  -->
-    <div class="job_listing_area">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="section_title">
-                        <h3>Job Listing</h3>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="brouse_job text-right">
-                        <a href="jobs.html" class="boxed-btn4">Browse More Job</a>
-                    </div>
-                </div>
-            </div>
-            <div class="job_lists">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="single_jobs white-bg d-flex justify-content-between">
-                            <div class="jobs_left d-flex align-items-center">
-                                <div class="thumb">
-                                    <img src="{% static 'img/svg_icon/1.svg' %}" alt="">
-                                </div>
-                                <div class="jobs_conetent">
-                                    <a href="job_details.html"><h4>Software Engineer</h4></a>
-                                    <div class="links_locat d-flex align-items-center">
-                                        <div class="location">
-                                            <p> <i class="fa fa-map-marker"></i> California, USA</p>
-                                        </div>
-                                        <div class="location">
-                                            <p> <i class="fa fa-clock-o"></i> Part-time</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="jobs_right">
-                                <div class="apply_now">
-                                    <a class="heart_mark" href="#"> <i class="ti-heart"></i> </a>
-                                    <a href="job_details.html" class="boxed-btn3">Apply Now</a>
-                                </div>
-                                <div class="date">
-                                    <p>Date line: 31 Jan 2020</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12">
-                        <div class="single_jobs white-bg d-flex justify-content-between">
-                            <div class="jobs_left d-flex align-items-center">
-                                <div class="thumb">
-                                    <img src="img/svg_icon/2.svg" alt="">
-                                </div>
-                                <div class="jobs_conetent">
-                                    <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                                    <div class="links_locat d-flex align-items-center">
-                                        <div class="location">
-                                            <p> <i class="fa fa-map-marker"></i> California, USA</p>
-                                        </div>
-                                        <div class="location">
-                                            <p> <i class="fa fa-clock-o"></i> Part-time</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="jobs_right">
-                                <div class="apply_now">
-                                    <a class="heart_mark" href="#"> <i class="ti-heart"></i> </a>
-                                    <a href="job_details.html" class="boxed-btn3">Apply Now</a>
-                                </div>
-                                <div class="date">
-                                    <p>Date line: 31 Jan 2020</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12">
-                        <div class="single_jobs white-bg d-flex justify-content-between">
-                            <div class="jobs_left d-flex align-items-center">
-                                <div class="thumb">
-                                    <img src="img/svg_icon/3.svg" alt="">
-                                </div>
-                                <div class="jobs_conetent">
-                                    <a href="job_details.html"><h4>Wordpress Developer</h4></a>
-                                    <div class="links_locat d-flex align-items-center">
-                                        <div class="location">
-                                            <p> <i class="fa fa-map-marker"></i> California, USA</p>
-                                        </div>
-                                        <div class="location">
-                                            <p> <i class="fa fa-clock-o"></i> Part-time</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="jobs_right">
-                                <div class="apply_now">
-                                    <a class="heart_mark" href="#"> <i class="ti-heart"></i> </a>
-                                    <a href="job_details.html" class="boxed-btn3">Apply Now</a>
-                                </div>
-                                <div class="date">
-                                    <p>Date line: 31 Jan 2020</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12">
-                        <div class="single_jobs white-bg d-flex justify-content-between">
-                            <div class="jobs_left d-flex align-items-center">
-                                <div class="thumb">
-                                    <img src="img/svg_icon/4.svg" alt="">
-                                </div>
-                                <div class="jobs_conetent">
-                                    <a href="job_details.html"><h4>Visual Designer</h4></a>
-                                    <div class="links_locat d-flex align-items-center">
-                                        <div class="location">
-                                            <p> <i class="fa fa-map-marker"></i> California, USA</p>
-                                        </div>
-                                        <div class="location">
-                                            <p> <i class="fa fa-clock-o"></i> Part-time</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="jobs_right">
-                                <div class="apply_now">
-                                    <a class="heart_mark" href="#"> <i class="ti-heart"></i> </a>
-                                    <a href="job_details.html" class="boxed-btn3">Apply Now</a>
-                                </div>
-                                <div class="date">
-                                    <p>Date line: 31 Jan 2020</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12">
-                        <div class="single_jobs white-bg d-flex justify-content-between">
-                            <div class="jobs_left d-flex align-items-center">
-                                <div class="thumb">
-                                    <img src="img/svg_icon/5.svg" alt="">
-                                </div>
-                                <div class="jobs_conetent">
-                                    <a href="job_details.html"><h4>Software Engineer</h4></a>
-                                    <div class="links_locat d-flex align-items-center">
-                                        <div class="location">
-                                            <p> <i class="fa fa-map-marker"></i> California, USA</p>
-                                        </div>
-                                        <div class="location">
-                                            <p> <i class="fa fa-clock-o"></i> Part-time</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="jobs_right">
-                                <div class="apply_now">
-                                    <a class="heart_mark" href="#"> <i class="ti-heart"></i> </a>
-                                    <a href="job_details.html" class="boxed-btn3">Apply Now</a>
-                                </div>
-                                <div class="date">
-                                    <p>Date line: 31 Jan 2020</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12">
-                        <div class="single_jobs white-bg d-flex justify-content-between">
-                            <div class="jobs_left d-flex align-items-center">
-                                <div class="thumb">
-                                    <img src="img/svg_icon/1.svg" alt="">
-                                </div>
-                                <div class="jobs_conetent">
-                                    <a href="job_details.html"><h4>Creative Designer</h4></a>
-                                    <div class="links_locat d-flex align-items-center">
-                                        <div class="location">
-                                            <p> <i class="fa fa-map-marker"></i> California, USA</p>
-                                        </div>
-                                        <div class="location">
-                                            <p> <i class="fa fa-clock-o"></i> Part-time</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="jobs_right">
-                                <div class="apply_now">
-                                    <a class="heart_mark" href="#"> <i class="ti-heart"></i> </a>
-                                    <a href="job_details.html" class="boxed-btn3">Apply Now</a>
-                                </div>
-                                <div class="date">
-                                    <p>Date line: 31 Jan 2020</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- job_listing_area_end  -->
 
     <!-- featured_candidates_area_start  -->
     <div class="featured_candidates_area">
@@ -397,111 +171,32 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section_title text-center mb-40">
-                        <h3>Featured Candidates</h3>
+                        <p> </p>
+                            <h3>Популярные направления</h3>
                     </div>
                 </div>
             </div>
+            
             <div class="row">
                 <div class="col-lg-12">
                     <div class="candidate_active owl-carousel">
+                        {% for city in popular_cites %}
                         <div class="single_candidates text-center">
                             <div class="thumb">
-                                <img src="img/candiateds/1.png" alt="">
+                                <!--<img src="{% static 'img/candiateds/' %}{{ city.id }}.png" alt=""> -->
+                                <img src="{% static 'img/candiateds/0.png' %}" alt="">
                             </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
+                            <a href="{% url 'popular_city' city.id %}"><h4>{{ city.city_name }}</h4></a> 
+                            <!--<p>{{ city.id }}</p> -->
                         </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/2.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/3.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/4.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/5.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/6.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/7.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/8.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/9.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/9.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/10.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/3.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/4.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- featured_candidates_area_end  -->
-
+<!--
     <div class="top_companies_area">
         <div class="container">
             <div class="row align-items-center mb-40">
@@ -555,7 +250,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- job_searcing_wrap  -->
     <div class="job_searcing_wrap overlay">
@@ -563,18 +258,18 @@
             <div class="row">
                 <div class="col-lg-5 offset-lg-1 col-md-6">
                     <div class="searching_text">
-                        <h3>Looking for a Job?</h3>
-                        <p>We provide online instant cash loans with quick approval </p>
-                        <a href="#" class="boxed-btn3">Browse Job</a>
+                        <h3>Хотите быть в курсе всех ваших маршрутов?</h3>
+                        <p>Отслеживайте свои маршруты в реальном времени</p>
+                        <a href="#" class="boxed-btn3">Отследить</a>
                     </div>
                 </div>
-                <div class="col-lg-5 offset-lg-1 col-md-6">
+                <!--<div class="col-lg-5 offset-lg-1 col-md-6">
                     <div class="searching_text">
                         <h3>Looking for a Expert?</h3>
                         <p>We provide online instant cash loans with quick approval </p>
                         <a href="#" class="boxed-btn3">Post a Job</a>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -586,9 +281,13 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section_title text-center mb-40">
-                        <h3>Testimonial</h3>
+                        <h3>Место для чего-то интересного</h3>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <!--
                 <div class="col-xl-12">
                     <div class="testmonial_active owl-carousel">
                         <div class="single_carousel">
@@ -647,6 +346,7 @@
                         </div>
                     </div>
                 </div>
+                -->
             </div>
         </div>
     </div>

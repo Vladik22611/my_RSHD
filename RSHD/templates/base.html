@@ -25,6 +25,64 @@
     <link rel="stylesheet" href="{% static 'css/slicknav.css' %}">
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .details {
+            display: none; /* Скрыть подробности по умолчанию */
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .model {
+            cursor: pointer;
+            color: black;
+            text-decoration: underline;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        .no-data {
+            text-align: center;
+            color: #777;
+        }
+        select::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        select::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        select::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        select::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        
+    </style>
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 </head>
 
@@ -35,7 +93,26 @@
 
     <!-- header-start -->
      {% include "includes/header.html" %}
-     {% block content %}
+     <div class="bradcam_overlay">
+        
+        <div class="container">
+            <div class="row">
+    
+                <div class="col-lg-5 offset-lg-1 col-md-6">
+                    <div class="searching_text">
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                       <!-- <h3>Looking for a Job?</h3>
+                        <p>We provide online instant cash loans with quick approval </p>
+                        <a href="#" class="boxed-btn3">Browse Job</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+
+    {% block content %}
     {% endblock %}
     {% include "includes/footer.html" %}
     <!--/ footer end  -->

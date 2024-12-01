@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+
 <body>
     <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
@@ -8,7 +9,7 @@
     <!-- header-start -->
     {% block content %}
 
- <!--    bradcam_area  
+    <!--    bradcam_area  
     <div class="bradcam_area bradcam_bg_1">
         <div class="container">
             <div class="row">
@@ -23,76 +24,115 @@
     </div>
     bradcam_area  
 -->
-
+    {% if not mas %}
     <div class="job_details_area">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-11">
+            <div class="row" >
+                <div class="col-lg-10" >
                     <div class="job_details_header">
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
-                                <div class="thumb">
-                                    <img src="{% static 'img/svg_icon/1.svg' %}" alt="">
-                                </div>
+                                
+                                    <img src="{% static 'img/svg_icon/sad_train.svg' %}" alt="">
+                                
                                 <div class="jobs_conetent">
-                                    <h4>{{city_departure}} - {{city_arrival}}</h4>
+                                    <h4>Упссc... такого маршрута еще не придумали</h4>
+                                    <a href="{% url 'index'%}"><h4>попробуйте найти другой маршрут</h4></a>
+                        
+                                </div>  
+                            </div>
+                        </div>   
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>    
+    {% endif %}
+    {% for elem in mas %}
+    <div class="job_details_area">
+        <div class="container">
+            <div class="row" >
+                <div class="col-lg-10"  >
+                    <div class="job_details_header">
+                        <div class="single_jobs white-bg d-flex justify-content-between">
+                            <div class="jobs_left d-flex align-items-center">
+                                <!--<div class="thumb">
+                                    <img src="{% static 'img/svg_icon/1.svg' %}" alt="">
+                                </div> -->
+                                <div class="jobs_conetent">
+                                    <h4>{{elem.city_departure}} - {{elem.city_arrival}}</h4>
+
                                     <div class="links_locat d-flex align-items-center">
                                         <div class="location">
-                                            <p> <i class="fa fa-map-marker"></i> Вокзал отправления: {{station_departure.0}}</p>
-                                            <p> <i class="fa fa-map-marker"></i> Вокзал прибытия: {{ station_arrival.0 }}</p>
+                                            <p> <i class="fa fa-map-marker"></i> Вокзал отправления: {{elem.station_departure}}</p>
+                                            <p> <i class="fa fa-map-marker"></i> Вокзал прибытия: {{elem.station_arrival }}</p>
                                         </div>
                                         <div class="location">
-                                            <p> <i class="fa fa-clock-o"></i> Дата и время отправления: {{departure_date}} {{departure_time.0}}</p>
-                                            <p> <i class="fa fa-clock-o"></i> Дата и время прибытия: {{arrival_date}} {{arrival_time.0}}</p>
+                                            <p> <i class="fa fa-clock-o"></i> Дата и время отправления: {{elem.departure_date}} | {{ elem.departure_time }}</p>
+                                            <p> <i class="fa fa-clock-o"></i> Дата и время прибытия: {{elem.arrival_date }} | {{ elem.arrival_time }}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="jobs_right">
-                                <div class="apply_now">
-                                    <a class="heart_mark" href="#"> <i class="ti-heart"></i> </a>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="descript_wrap white-bg">
                         <div class="single_wrap">
-                            <h4>Job description</h4>
-                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing.</p>
-                            <p>Variations of passages of lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing.</p>
-                        </div>
-                        <div class="single_wrap">
-                            <h4>Responsibility</h4>
+                            <h4>Описание рейса</h4>
+                            {% if not elem.need_repairs%}
+
                             <ul>
-                                <li>The applicants should have experience in the following areas.
+
+                                <li>{{ elem.train_type }} рейс</li>
+
+                                <li>Год выпуска поезда: {{ elem.year_of_manufacture}}</li>
+                                <li>Оставшийся срок эксплуатации(кол-во лет): {{ elem.r_service_life }}</li>
+                                <li>Модель поезда:
+
+                                    <span class="model" onclick="toggleDetails({{ elem.id }})">{{ elem.name_model }}</span>
+                                    <div id={{ elem.id }} class="details">
+                                        <ul>
+                                            <li>Вместимость(кол-во мест): {{ elem.capacity }}</li>
+                                            <li>Скорость движения(км/ч): {{ elem.travel_speed }}</li>
+                                            <li>Тип сидений: {{ elem.seat_type }}</li>
+                                            <li>Используемый мотор: {{ elem.motor_used }}</li>
+                                            <li>Система кондиционирования: {{ elem.condition_system }}</li>
+                                        </ul>
+                                    </div>
                                 </li>
-                                <li>Have sound knowledge of commercial activities.</li>
-                                <li>Leadership, analytical, and problem-solving abilities.</li>
-                                <li>Should have vast knowledge in IAS/ IFRS, Company Act, Income Tax, VAT.</li>
                             </ul>
-                        </div>
-                        <div class="single_wrap">
-                            <h4>Qualifications</h4>
-                            <ul>
-                                <li>The applicants should have experience in the following areas.
-                                </li>
-                                <li>Have sound knowledge of commercial activities.</li>
-                                <li>Leadership, analytical, and problem-solving abilities.</li>
-                                <li>Should have vast knowledge in IAS/ IFRS, Company Act, Income Tax, VAT.</li>
-                            </ul>
-                        </div>
-                        <div class="single_wrap">
-                            <h4>Benefits</h4>
-                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing.</p>
+
+
+                            <script>
+                                function toggleDetails(detailsId) {
+                                    var details = document.getElementById(detailsId);
+                                    if (details.style.display === "none") {
+                                        details.style.display = "block"; // Показать подробности
+                                    } else {
+                                        details.style.display = "none"; // Скрыть подробности
+                                    }
+                                }
+                            </script>
+                            {% else %}
+                            <p>Просим прощения, но этот поезд сейчас в ремонте :( </p>
+                            {% endif %}
                         </div>
                     </div>
+                </div>
+            </div>
+
+        </div>
+        
+        {% endfor %}
+    </div>
+    
 
 
 
 
 
-
-
+    <!--
                     <div class="apply_job_form white-bg">
                         <h4>Apply for the job</h4>
                         <form action="#">
@@ -138,7 +178,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-2">
                     <div class="job_sumary">
                         <div class="summery_header">
                             <h3>Job Summery</h3>
@@ -194,5 +234,5 @@
                 </div>
             </div>
         </div>
-    </div>
-{% endblock %}
+    </div> -->
+    {% endblock %}
