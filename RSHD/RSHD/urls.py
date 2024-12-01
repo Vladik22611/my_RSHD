@@ -25,5 +25,6 @@ urlpatterns = [
     path("", include("index.urls")),
     path("routes/", include("routes.urls")),
     path("changing_routes/", include("changing_routes.urls")),
-    path("show_table/", include('show_table.urls'))
+    path("show_table/", include("show_table.urls")),
+    path("account/", include("account.urls")),
 ]

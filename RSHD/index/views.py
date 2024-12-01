@@ -1,14 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 import psycopg2
-from .forms import NameForm, DateForm
 from constants import yesterday, delta, min_day_value, max_day_value, tommorow
-from django.contrib.auth.views import LoginView
-from .forms import UserRegistrationForm, LoginForm
+
 
 # from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login, logout
 
 
 @login_required
@@ -52,43 +49,3 @@ def index(request):
     }
     return render(request, "index/main.html", context)
 
-
-def register(request):
-    if request.method == "POST":
-        user_form = UserRegistrationForm(request.POST)
-        if user_form.is_valid():
-            # Create a new user object but avoid saving it yet
-            new_user = user_form.save(commit=False)
-            # Set the chosen password
-            new_user.set_password(user_form.cleaned_data["password"])
-            # Save the User object
-            new_user.save()
-            return render(request, "index/register_done.html", {"new_user": new_user})
-    else:
-        user_form = UserRegistrationForm()
-    return render(request, "index/register.html", {"user_form": user_form})
-
-
-def user_login(request):
-    if request.method == "POST":
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data["username"]
-            password = form.cleaned_data["password"]
-            # Аутентификация пользователя
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                # Логиним пользователя
-                login(request, user=user)
-                return redirect("index")  # Направляем на главную страницу или другую э
-            else:
-                form.add_error(None, "Неверный логин или пароль.")
-    else:
-        form = LoginForm()
-
-    return render(request, "index/login.html", {"form": form})
-
-
-def user_logout(request):
-    logout(request)
-    return redirect("index")  # Замените на нужный URL или имя представления
