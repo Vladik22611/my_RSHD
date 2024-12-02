@@ -39,6 +39,8 @@ def index(request):
 
     # is_client = request.user.groups.filter(name="Clients").exists()
     is_superuser = request.user.is_superuser
+    cursor.execute("SELECT get_races_count();")
+    count_races = cursor.fetchone()[0]
     context = {
         "today": yesterday.strftime("%Y-%m-%d"),
         "min_day_value": min_day_value,
@@ -46,6 +48,7 @@ def index(request):
         "tommorow": tommorow,
         "popular_cites": popular_cites,
         "is_superuser": is_superuser,
+        "count_races": count_races,
     }
     return render(request, "index/main.html", context)
 
